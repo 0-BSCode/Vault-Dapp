@@ -21,7 +21,7 @@ contract("Storage", (accounts) => {
   it("Deposit amount should reflect in contract balance", async () => {
     let storageInstance = await Storage.deployed();
     let expectedBalance = web3.utils.toWei("1", "ether");
-    await storageInstance.deposit({
+    let { logs } = await storageInstance.deposit({
       from: accounts[2],
       value: expectedBalance,
     });
@@ -29,6 +29,7 @@ contract("Storage", (accounts) => {
       from: accounts[2],
     });
     let contractBalance = await web3.eth.getBalance(storageInstance.address);
+    console.log(logs);
     assert(
       expectedBalance.valueOf().toString() ===
         actualBalance.valueOf().toString() &&
