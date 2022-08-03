@@ -3,6 +3,8 @@ pragma solidity ^0.8.15;
 contract Storage {
     mapping(address => uint256) balances;
     address public owner;
+    event Deposit(address _from, uint256 _amount, bytes32 message);
+    event Withdrawal(address _to, uint256 _amount, bytes32 message);
 
     constructor() {
         owner = msg.sender;
@@ -10,6 +12,7 @@ contract Storage {
 
     function deposit() external payable {
         balances[msg.sender] += msg.value;
+        emit Deposit(msg.sender, msg.value, "Deposit successful!");
     }
 
     function withdraw(uint256 _amount) external payable {
@@ -19,6 +22,8 @@ contract Storage {
         );
         address payable _account = payable(msg.sender);
         _account.transfer(_amount);
+        balances[msg.sender] -= _amount;
+        emit Withdrawal(msg.sender, _amount, "Withdrawal successful!");
     }
 
     function viewBalance() external view returns (uint256) {
