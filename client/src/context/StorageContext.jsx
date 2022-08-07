@@ -99,6 +99,8 @@ const StorageProvider = ({ children }) => {
     console.log(`Success - ${txHash.hash}`);
     setIsLoading(false);
 
+    console.log("Deposit hash");
+    console.log(txHash);
     setDepositAmount("");
     getBalance();
   };

@@ -30,3 +30,9 @@ contract Storage {
         return balances[msg.sender];
     }
 }
+
+/*
+Things to add:
+1. Transfer between accounts
+2. Log events
+*/
