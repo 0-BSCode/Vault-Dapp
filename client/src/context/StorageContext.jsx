@@ -38,16 +38,8 @@ const StorageProvider = ({ children }) => {
     try {
       if (!ethereum) return alert("Please install Metamask!");
 
-      // const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
 
-      // console.log("Accounts");
-      // console.log(accounts);
-      // console.log(accounts[0]);
-
-      const provider = new ethers.providers.Web3Provider(ethereum);
-
-      const accounts = await provider.send("eth_requestAccounts", []);
-      console.log(accounts);
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
         getBalance();
@@ -63,17 +55,10 @@ const StorageProvider = ({ children }) => {
     try {
       if (!ethereum) return alert("Please install Metamask!");
 
-      // const accounts = await ethereum.request({
-      //   method: "eth_requestAccounts",
-      // });
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
 
-      // console.log("Accounts");
-      // console.log(accounts);
-
-      const provider = new ethers.providers.Web3Provider(ethereum);
-
-      const accounts = await provider.send("eth_requestAccounts", []);
-      console.log(accounts);
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
         getBalance();
@@ -91,9 +76,7 @@ const StorageProvider = ({ children }) => {
     try {
       if (ethereum) {
         const storageContract = createEthereumContract();
-        const balance = await storageContract.viewBalance({
-          from: currentAccount,
-        });
+        const balance = await storageContract.viewBalance();
 
         setBalance(balance);
       } else {
@@ -104,9 +87,10 @@ const StorageProvider = ({ children }) => {
     }
   };
 
-  const depositFunds = async () => {
+  const depositFunds = async (_amount) => {
     const storageContract = createEthereumContract();
-    const parsedAmount = ethers.utils.parseEther(depositAmount);
+    // const parsedAmount = ethers.utils.parseEther(depositAmount);
+    const parsedAmount = ethers.utils.parseEther(_amount);
 
     const txHash = await storageContract.deposit({ value: parsedAmount });
 
@@ -137,8 +121,11 @@ const StorageProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("FROM PROVIDER");
     checkForWalletConnection();
+
+    ethereum.on("accountsChanged", function (accounts) {
+      getBalance();
+    });
   }, []);
 
   return (
@@ -153,7 +140,7 @@ const StorageProvider = ({ children }) => {
         depositFunds,
         withdrawAmount,
         handleWithdrawAmountChange,
-        withdrawAmount,
+        withdrawFunds,
         isLoading,
       }}
     >
