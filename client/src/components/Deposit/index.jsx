@@ -2,11 +2,17 @@ import React, { useContext } from "react";
 import { StorageContext } from "../../context/StorageContext";
 
 const Deposit = () => {
-  const { depositFunds } = useContext(StorageContext);
+  const { depositFunds, handleDepositAmountChange, depositAmount } =
+    useContext(StorageContext);
   return (
     <div>
       <h1>Deposit</h1>
-      <button onClick={(e) => depositFunds("2")}>Deposit</button>
+      <input
+        type={"text"}
+        value={depositAmount}
+        onChange={handleDepositAmountChange}
+      />
+      <button onClick={depositFunds}>Deposit</button>
     </div>
   );
 };

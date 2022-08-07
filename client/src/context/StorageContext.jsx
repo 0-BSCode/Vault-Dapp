@@ -87,10 +87,9 @@ const StorageProvider = ({ children }) => {
     }
   };
 
-  const depositFunds = async (_amount) => {
+  const depositFunds = async () => {
     const storageContract = createEthereumContract();
-    // const parsedAmount = ethers.utils.parseEther(depositAmount);
-    const parsedAmount = ethers.utils.parseEther(_amount);
+    const parsedAmount = ethers.utils.parseEther(depositAmount);
 
     const txHash = await storageContract.deposit({ value: parsedAmount });
 
