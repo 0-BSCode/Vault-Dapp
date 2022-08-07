@@ -24,7 +24,7 @@ const StorageProvider = ({ children }) => {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
-  const [balance, setBalance] = useState("");
+  const [balance, setBalance] = useState("0");
 
   const handleDepositAmountChange = (e) => {
     setDepositAmount(e.target.value);
@@ -38,10 +38,19 @@ const StorageProvider = ({ children }) => {
     try {
       if (!ethereum) return alert("Please install Metamask!");
 
-      const accounts = await ethereum.request({ method: "eth_accounts" });
+      // const accounts = await ethereum.request({ method: "eth_accounts" });
 
+      // console.log("Accounts");
+      // console.log(accounts);
+      // console.log(accounts[0]);
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+
+      const accounts = await provider.send("eth_requestAccounts", []);
+      console.log(accounts);
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
+        getBalance();
       } else {
         console.log("No accounts found");
       }
@@ -54,12 +63,23 @@ const StorageProvider = ({ children }) => {
     try {
       if (!ethereum) return alert("Please install Metamask!");
 
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
+      // const accounts = await ethereum.request({
+      //   method: "eth_requestAccounts",
+      // });
 
-      setCurrentAccount(accounts[0]);
-      window.location.reload();
+      // console.log("Accounts");
+      // console.log(accounts);
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+
+      const accounts = await provider.send("eth_requestAccounts", []);
+      console.log(accounts);
+      if (accounts.length) {
+        setCurrentAccount(accounts[0]);
+        getBalance();
+      } else {
+        console.log("No accounts found");
+      }
     } catch (e) {
       console.log(e);
 
@@ -71,8 +91,9 @@ const StorageProvider = ({ children }) => {
     try {
       if (ethereum) {
         const storageContract = createEthereumContract();
-
-        const balance = storageContract.viewBalance();
+        const balance = await storageContract.viewBalance({
+          from: currentAccount,
+        });
 
         setBalance(balance);
       } else {
@@ -116,6 +137,7 @@ const StorageProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log("FROM PROVIDER");
     checkForWalletConnection();
   }, []);
 
@@ -123,13 +145,16 @@ const StorageProvider = ({ children }) => {
     <StorageContext.Provider
       value={{
         connectWallet,
+        currentAccount,
+        balance,
         getBalance,
         depositAmount,
         handleDepositAmountChange,
         depositFunds,
         withdrawAmount,
         handleWithdrawAmountChange,
-        depositFunds,
+        withdrawAmount,
+        isLoading,
       }}
     >
       {children}
