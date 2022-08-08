@@ -135,6 +135,7 @@ const StorageProvider = ({ children }) => {
 
     ethereum.on("accountsChanged", function (accounts) {
       getBalance();
+      setCurrentAccount(accounts[0]);
     });
   }, []);
 
