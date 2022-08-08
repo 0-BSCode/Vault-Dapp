@@ -1,6 +1,10 @@
 # Vault Dapp
 A simple storage decentralized application where you can store and/or withdraw ethereum.
 
+## Screenshot
+![](./screenshots/DesktopLanding.png)
+![](./screenshots/DesktopHome.png)
+
 ## How to Run
 1. Clone the repository.
 2. Install Truffle via `npm i -g truffle`.
