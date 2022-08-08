@@ -91,3 +91,9 @@ body {
     font-size: 32px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  :root {
+    font-size: 18px;
+  }
+}

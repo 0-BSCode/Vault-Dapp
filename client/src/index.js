@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import StorageProvider from "./context/StorageContext";
+import MediaProvider from "./context/MediaContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StorageProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <MediaProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </MediaProvider>
   </StorageProvider>
 );
 

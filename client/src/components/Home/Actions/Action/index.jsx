@@ -27,7 +27,12 @@ const Action = ({ action, description, value, onChange, onSubmit }) => {
             value={value}
             onChange={onChange}
           />
-          <button className={styles.action__formCurrency}>ETH</button>
+          <button
+            className={styles.action__formCurrency}
+            onClick={(e) => e.preventDefault()}
+          >
+            ETH
+          </button>
         </div>
 
         <button className={styles.action__formSubmit} type={"submit"}>
