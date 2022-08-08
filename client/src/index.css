@@ -107,3 +107,15 @@ button:hover {
     font-size: 18px;
   }
 }
+
+@media screen and (min-width: 1200px) {
+  :root {
+    font-size: 21px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    font-size: 25px;
+  }
+}

@@ -16,5 +16,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 1.5rem;
+    row-gap: 1.2rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .actions__header {
+        font-size: 1.5rem;
+    }
+
+    .actions__wrapper {
+        width: 100%;
+        flex-direction: row;
+        row-gap: 0;
+        column-gap: 2.5rem;
+    }
 }

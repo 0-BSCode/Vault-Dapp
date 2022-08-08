@@ -37,3 +37,18 @@
 .info__balanceAmount {
     display: inline-block;
 }
+
+@media screen and (min-width: 1024px) {
+    .info {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .info__content:first-child {
+        align-items: flex-start;
+    }
+
+    .info__content:last-child {
+        align-items: flex-end;
+    }
+}
