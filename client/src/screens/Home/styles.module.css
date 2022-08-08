@@ -1,0 +1,13 @@
+.home {
+    background-color: var(--dark-blue-main);
+    padding-inline: 1.8rem;
+    padding-bottom: 4rem;
+    position: relative;
+}
+
+.home__divider {
+    width: 100%;
+    height: 0.1rem;
+    background-color: var(--soft-blue);
+    margin-top: 3rem;
+}

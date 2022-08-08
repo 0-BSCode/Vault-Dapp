@@ -78,7 +78,7 @@ const StorageProvider = ({ children }) => {
         const storageContract = createEthereumContract();
         const balance = await storageContract.viewBalance();
 
-        setBalance(balance);
+        setBalance(ethers.utils.formatEther(balance));
       } else {
         console.log("Ethereum isn't present");
       }
