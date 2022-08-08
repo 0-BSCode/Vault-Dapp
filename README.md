@@ -18,6 +18,10 @@ A simple storage decentralized application where you can store and/or withdraw e
    - Place *1337* in the `ID` field.
    - Place *ETH* in the `Currency Symbol` field.
 
-#### To Do
+#### Upcoming Features
 1. Transfer between accounts
-2. Log events
+2. Log events and update UI based on them
+3. Update input field to reflect erroneous values
+4. Have balance display account for many decimal points
+5. Allow for deposit/withdrawal in Wei
+6. Deploy contract and frontend
