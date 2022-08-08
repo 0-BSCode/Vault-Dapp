@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../utils/constants";
+import validateAmount from "../utils/validateAmount";
 
 export const StorageContext = React.createContext();
 
@@ -88,37 +89,45 @@ const StorageProvider = ({ children }) => {
   };
 
   const depositFunds = async () => {
-    const storageContract = createEthereumContract();
-    const parsedAmount = ethers.utils.parseEther(depositAmount);
+    if (validateAmount(depositAmount)) {
+      const storageContract = createEthereumContract();
+      const parsedAmount = ethers.utils.parseEther(depositAmount);
 
-    const txHash = await storageContract.deposit({ value: parsedAmount });
+      const txHash = await storageContract.deposit({ value: parsedAmount });
 
-    setIsLoading(true);
-    console.log(`Loading - ${txHash.hash}`);
-    await txHash.wait();
-    console.log(`Success - ${txHash.hash}`);
-    setIsLoading(false);
+      setIsLoading(true);
+      console.log(`Loading - ${txHash.hash}`);
+      await txHash.wait();
+      console.log(`Success - ${txHash.hash}`);
+      setIsLoading(false);
 
-    console.log("Deposit hash");
-    console.log(txHash);
-    setDepositAmount("");
-    getBalance();
+      console.log("Deposit hash");
+      console.log(txHash);
+      setDepositAmount("");
+      getBalance();
+    } else {
+      alert("INVALID INPUT");
+    }
   };
 
   const withdrawFunds = async () => {
-    const storageContract = createEthereumContract();
-    const parsedAmount = ethers.utils.parseEther(withdrawAmount);
+    if (validateAmount(withdrawAmount)) {
+      const storageContract = createEthereumContract();
+      const parsedAmount = ethers.utils.parseEther(withdrawAmount);
 
-    const txHash = await storageContract.withdraw(parsedAmount);
+      const txHash = await storageContract.withdraw(parsedAmount);
 
-    setIsLoading(true);
-    console.log(`Loading - ${txHash.hash}`);
-    await txHash.wait();
-    console.log(`Success - ${txHash.hash}`);
-    setIsLoading(false);
+      setIsLoading(true);
+      console.log(`Loading - ${txHash.hash}`);
+      await txHash.wait();
+      console.log(`Success - ${txHash.hash}`);
+      setIsLoading(false);
 
-    setWithdrawAmount("");
-    getBalance();
+      setWithdrawAmount("");
+      getBalance();
+    } else {
+      alert("INVALID INPUT");
+    }
   };
 
   useEffect(() => {
