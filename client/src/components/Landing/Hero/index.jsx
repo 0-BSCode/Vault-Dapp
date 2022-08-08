@@ -16,7 +16,7 @@ const Hero = () => {
       </h2>
       <div className={styles.hero__descriptions}>
         <p className={styles.hero__description}>
-          Securely store your etherium in this decentralized vault.
+          Securely store your ethereum in this decentralized vault.
         </p>
         <p className={styles.hero__description}>
           Deposit and withdraw from <b>anywhere</b> and <b>anytime</b>.
