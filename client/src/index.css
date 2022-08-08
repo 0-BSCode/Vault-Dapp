@@ -62,6 +62,7 @@
 
 :root {
   font-size: 18px;
+  letter-spacing: 0.05rem;
 
   --soft-blue: hsl(215, 51%, 70%);
   --cyan: hsl(178, 100%, 50%);

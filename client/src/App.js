@@ -4,21 +4,23 @@ import Connect from "./components/Connect";
 import Deposit from "./components/Deposit";
 import Withdraw from "./components/Withdraw";
 import { StorageContext } from "./context/StorageContext";
+import Landing from "./screens/Landing";
 
 function App() {
   const { currentAccount } = useContext(StorageContext);
   return (
-    <main>
-      {currentAccount ? (
-        <>
-          <Balance />
-          <Deposit />
-          <Withdraw />
-        </>
-      ) : (
-        <Connect />
-      )}
-    </main>
+    <Landing />
+    // <main>
+    //   {currentAccount ? (
+    //     <>
+    //       <Balance />
+    //       <Deposit />
+    //       <Withdraw />
+    //     </>
+    //   ) : (
+    //     <Connect />
+    //   )}
+    // </main>
   );
 }
 

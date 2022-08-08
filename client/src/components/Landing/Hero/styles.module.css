@@ -1,0 +1,54 @@
+.hero {
+    background-image: url("../../../assets/images/image-equilibrium.svg");
+    background-repeat: no-repeat;
+    background-size: 53rem;
+    background-position: center 0rem;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero__header {
+    font-size: 2rem;
+    width: 60%;
+}
+
+.hero__header > span {
+    color: var(--cyan);
+}
+
+.hero__description {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+.hero__description:is(:last-child) {
+    margin-top: 1.5rem;
+}
+
+.hero__img {
+    margin-top: 2rem;
+    width: 1rem;
+}
+
+.hero__call {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+}
+
+.hero__btn {
+    margin-top: 1rem;
+    border: solid 0.2rem var(--cyan);
+    border-radius: 3rem;
+    background-color: var(--dark-blue-card);
+    padding: 0.7rem 2rem;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03rem;
+}

@@ -1,0 +1,12 @@
+.attribution {
+    color: white;
+    font-size: 0.6rem;
+    position: absolute;
+    bottom: 0.5rem;
+}
+
+.attribution__link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
