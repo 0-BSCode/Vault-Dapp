@@ -74,6 +74,16 @@ body {
   font-family: 'Outfit', sans-serif;
 }
 
+* {
+  transition: all 0.2s;
+}
+
+a:hover,
+button:hover {
+  opacity: 0.4;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 480px) {
   :root {
     font-size: 23px;
