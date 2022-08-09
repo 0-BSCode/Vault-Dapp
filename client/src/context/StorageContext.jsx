@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../utils/constants";
 import validateAmount from "../utils/validateAmount";
+import parseRevertMessage from "../utils/parseRevertMessage";
 
 export const StorageContext = React.createContext();
 
@@ -90,21 +91,26 @@ const StorageProvider = ({ children }) => {
 
   const depositFunds = async () => {
     if (validateAmount(depositAmount)) {
-      const storageContract = createEthereumContract();
-      const parsedAmount = ethers.utils.parseEther(depositAmount);
+      try {
+        const storageContract = createEthereumContract();
 
-      const txHash = await storageContract.deposit({ value: parsedAmount });
+        const parsedAmount = ethers.utils.parseEther(depositAmount);
 
-      setIsLoading(true);
-      console.log(`Loading - ${txHash.hash}`);
-      await txHash.wait();
-      console.log(`Success - ${txHash.hash}`);
-      setIsLoading(false);
+        const txHash = await storageContract.deposit({ value: parsedAmount });
 
-      console.log("Deposit hash");
-      console.log(txHash);
-      setDepositAmount("");
-      getBalance();
+        setIsLoading(true);
+        console.log(`Loading - ${txHash.hash}`);
+        await txHash.wait();
+        console.log(`Success - ${txHash.hash}`);
+        setIsLoading(false);
+
+        console.log("Deposit hash");
+        console.log(txHash);
+        setDepositAmount("");
+        getBalance();
+      } catch (e) {
+        alert(parseRevertMessage(e));
+      }
     } else {
       alert("INVALID INPUT");
     }
@@ -115,16 +121,22 @@ const StorageProvider = ({ children }) => {
       const storageContract = createEthereumContract();
       const parsedAmount = ethers.utils.parseEther(withdrawAmount);
 
-      const txHash = await storageContract.withdraw(parsedAmount);
+      try {
+        const txHash = await storageContract.withdraw(parsedAmount);
 
-      setIsLoading(true);
-      console.log(`Loading - ${txHash.hash}`);
-      await txHash.wait();
-      console.log(`Success - ${txHash.hash}`);
-      setIsLoading(false);
+        setIsLoading(true);
+        console.log(`Loading - ${txHash.hash}`);
+        await txHash.wait();
+        console.log(`Success - ${txHash.hash}`);
+        setIsLoading(false);
 
-      setWithdrawAmount("");
-      getBalance();
+        console.log("Withdraw hash");
+        console.log(txHash);
+        setWithdrawAmount("");
+        getBalance();
+      } catch (e) {
+        alert(parseRevertMessage(e));
+      }
     } else {
       alert("INVALID INPUT");
     }

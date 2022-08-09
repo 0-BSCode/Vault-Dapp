@@ -1,4 +1,4 @@
 import storageABI from "../contracts/Storage.json";
 
-export const contractAddress = "0x9f4F7fba25689ddFeC93CE434df476de789C5E4f";
+export const contractAddress = "0xC94b6556DB2c1c48aa5F4F3148C3611dEb1e7874";
 export const contractABI = storageABI.abi;

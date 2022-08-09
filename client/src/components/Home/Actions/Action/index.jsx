@@ -26,6 +26,7 @@ const Action = ({ action, description, value, onChange, onSubmit }) => {
             name={action}
             value={value}
             onChange={onChange}
+            placeholder={"0"}
           />
           <button
             className={styles.action__formCurrency}

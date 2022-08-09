@@ -3,8 +3,16 @@ pragma solidity ^0.8.15;
 contract Storage {
     mapping(address => uint256) balances;
     address public owner;
-    event Deposit(address _from, uint256 _amount, bytes32 message);
-    event Withdrawal(address _to, uint256 _amount, bytes32 message);
+    event Deposit(
+        address indexed _from,
+        uint256 indexed _amount,
+        bytes32 message
+    );
+    event Withdrawal(
+        address indexed _to,
+        uint256 indexed _amount,
+        bytes32 message
+    );
 
     constructor() {
         owner = msg.sender;
