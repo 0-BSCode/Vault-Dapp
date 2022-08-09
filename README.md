@@ -26,3 +26,4 @@ A simple storage decentralized application where you can store and/or withdraw e
 5. Allow for deposit/withdrawal in Wei
 6. Deploy contract and frontend
 7. Allow users to update username
+8. Migrate to NextJS
