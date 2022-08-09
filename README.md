@@ -25,3 +25,4 @@ A simple storage decentralized application where you can store and/or withdraw e
 4. Have balance display account for many decimal points
 5. Allow for deposit/withdrawal in Wei
 6. Deploy contract and frontend
+7. Allow users to update username
