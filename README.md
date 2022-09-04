@@ -27,3 +27,5 @@ A simple storage decentralized application where you can store and/or withdraw e
 6. Deploy contract and frontend
 7. Allow users to update username
 8. Migrate to NextJS
+
+App is now deployed on [Fleek](https://sparkling-fog-4118.on.fleek.co/).
